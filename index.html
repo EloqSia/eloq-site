@@ -3,349 +3,483 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Eloquent 言值 — executive education for future leaders in banking and business." />
-  <title>Eloquent 言值 | Future Leaders in Banking and Business</title>
+  <title>Eloquent 言值</title>
   <style>
     :root {
       --navy: #003366;
       --blue: #336699;
-      --pale-blue: #edf3f8;
-      --ink: #21303d;
-      --muted: #627180;
-      --line: #d9e2eb;
-      --light: #f5f7f9;
-      --white: #ffffff;
+      --blue-soft: #edf3f8;
+      --bg: #f3f5f7;
+      --panel: #ffffff;
+      --light: #f8fafc;
+      --text: #21313d;
+      --muted: #607180;
+      --line: #dfe7ee;
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--light);
-      color: var(--ink);
+      background: var(--bg);
+      color: var(--text);
       font-family: "Segoe UI", Arial, Helvetica, sans-serif;
       line-height: 1.5;
     }
-    a { color: inherit; }
+
     .page {
-      width: min(1100px, calc(100% - 28px));
+      max-width: 1080px;
       margin: 24px auto;
-      background: var(--white);
+      background: var(--panel);
       border: 1px solid var(--line);
-      box-shadow: 0 8px 28px rgba(0, 51, 102, .08);
+      box-shadow: 0 8px 24px rgba(0, 51, 102, 0.07);
     }
 
-    header {
+    .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 22px;
-      padding: 18px 34px 14px;
+      gap: 20px;
+      padding: 18px 34px 12px;
       border-bottom: 3px solid var(--blue);
+      background: #fff;
     }
+
     .brand {
       margin: 0;
-      color: var(--navy);
-      font-size: 28px;
+      font-size: 30px;
+      font-weight: 700;
       line-height: 1.1;
-      letter-spacing: .02em;
+      color: var(--navy);
+      letter-spacing: 0.02em;
     }
+
     .tagline {
       margin: 4px 0 0;
-      color: var(--blue);
       font-size: 14px;
       font-weight: 600;
-      letter-spacing: .03em;
+      color: var(--blue);
+      letter-spacing: 0.04em;
     }
-    nav {
+
+    .nav {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
-      gap: 13px 18px;
-      color: var(--navy);
+      gap: 14px 18px;
       font-size: 11px;
       font-weight: 700;
-      letter-spacing: .07em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    nav a { text-decoration: none; }
-    nav a:hover { color: var(--blue); }
 
-    section {
+    .nav a {
+      color: var(--navy);
+      text-decoration: none;
+    }
+
+    .nav a:hover { color: var(--blue); }
+
+    .section {
       padding: 22px 34px 20px;
       border-bottom: 1px solid var(--line);
     }
-    section:last-child { border-bottom: 0; }
-    .section-title {
+
+    .section:last-of-type { border-bottom: none; }
+
+    .heading {
       margin: 0 0 12px;
-      color: var(--navy);
       font-size: 19px;
-      line-height: 1.2;
-      letter-spacing: .045em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
+      color: var(--navy);
     }
-    .section-title::before {
+
+    .heading::before {
       content: "";
       display: inline-block;
-      width: 22px;
+      width: 18px;
       height: 3px;
-      margin: 0 9px 5px 0;
       background: var(--blue);
+      margin: 0 8px 4px 0;
+      vertical-align: middle;
     }
-    .intro-grid, .register-grid {
+
+    .intro-grid {
       display: grid;
-      grid-template-columns: 1.35fr .85fr;
-      gap: 20px;
+      grid-template-columns: 1.5fr 0.8fr;
+      gap: 18px;
       align-items: start;
     }
-    p { margin: 0; font-size: 14px; }
-    p + p { margin-top: 9px; }
-    .callout {
-      padding: 15px 17px;
-      background: var(--pale-blue);
-      border-left: 4px solid var(--blue);
-      color: var(--navy);
-      font-size: 15px;
-      font-weight: 700;
+
+    .copy p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text);
     }
+
+    .copy p + p { margin-top: 10px; }
+
+    .callout {
+      background: var(--blue-soft);
+      border-left: 4px solid var(--blue);
+      padding: 14px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
     .facts {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
       margin-top: 16px;
     }
+
     .fact {
-      padding: 11px 13px;
+      padding: 12px 13px;
       background: var(--light);
       border: 1px solid var(--line);
     }
-    .fact small {
-      display: block;
-      margin-bottom: 3px;
-      color: var(--muted);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-    .fact strong { color: var(--navy); font-size: 15px; }
 
-    .cards, .modules {
+    .fact-label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .fact-value {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .grid-2 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
-    .card, .module {
-      padding: 14px 16px;
+
+    .card {
+      padding: 14px 15px;
       background: var(--light);
       border: 1px solid var(--line);
     }
-    .card h3, .module h3 {
-      margin: 0 0 6px;
-      color: var(--navy);
+
+    .card h3 {
+      margin: 0 0 7px;
       font-size: 15px;
+      color: var(--navy);
     }
-    .card p, .module p { font-size: 13px; }
-    .modules { grid-template-columns: repeat(4, 1fr); }
-    .module { background: linear-gradient(#fff, var(--light)); }
-    .module-number {
+
+    .card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .module {
+      background: linear-gradient(180deg, #fff, var(--light));
+      border: 1px solid var(--line);
+      padding: 14px 12px;
+    }
+
+    .module-tag {
       display: inline-block;
       margin-bottom: 8px;
-      padding: 3px 8px;
-      background: var(--pale-blue);
+      background: var(--blue-soft);
       color: var(--blue);
+      padding: 3px 8px;
       font-size: 10px;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+    }
+
+    .module h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--navy);
+    }
+
+    .module p {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--text);
     }
 
     .profile {
       display: grid;
-      grid-template-columns: 150px 1fr;
-      gap: 20px;
+      grid-template-columns: 170px 1fr;
+      gap: 18px;
       align-items: center;
     }
-    .initials {
+
+    .portrait {
       display: grid;
-      aspect-ratio: 1;
       place-items: center;
+      width: 100%;
+      aspect-ratio: 1;
       background: linear-gradient(135deg, var(--navy), var(--blue));
-      color: var(--white);
-      font-size: 38px;
+      color: white;
+      font-size: 42px;
       font-weight: 700;
-      letter-spacing: .08em;
+      letter-spacing: 0.08em;
     }
-    .credentials {
+
+    .bio {
       margin: 0;
       padding: 0;
       list-style: none;
       font-size: 13px;
     }
-    .credentials li {
+
+    .bio li {
       padding: 7px 0;
       border-bottom: 1px solid var(--line);
     }
-    .credentials li:last-child { border-bottom: 0; }
-    .credentials b {
+
+    .bio li:last-child { border-bottom: none; }
+
+    .bio b {
       display: inline-block;
-      min-width: 112px;
+      min-width: 110px;
       color: var(--navy);
     }
 
-    .register-note {
-      padding: 16px;
-      background: var(--pale-blue);
-      border: 1px solid var(--line);
+    .register-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 18px;
+      align-items: start;
     }
+
+    .register-note {
+      background: var(--light);
+      border: 1px solid var(--line);
+      padding: 16px;
+    }
+
+    .register-note p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text);
+    }
+
     form {
       display: grid;
       gap: 10px;
-      padding: 16px;
       border: 1px solid var(--line);
+      padding: 16px;
+      background: #fff;
     }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
     input, textarea {
       width: 100%;
       padding: 10px 11px;
-      border: 1px solid #c8d5e1;
-      color: var(--ink);
       font: inherit;
       font-size: 13px;
+      border: 1px solid #c7d3df;
       background: #fff;
+      color: var(--text);
+      resize: vertical;
     }
-    input:focus, textarea:focus { outline: 2px solid #c9dced; border-color: var(--blue); }
+
+    input:focus, textarea:focus {
+      outline: 2px solid rgba(51, 102, 153, 0.15);
+      border-color: var(--blue);
+    }
+
     button {
-      padding: 11px 16px;
-      border: 0;
+      border: none;
       background: var(--navy);
-      color: #fff;
-      cursor: pointer;
+      color: white;
+      padding: 12px 18px;
       font: inherit;
-      font-size: 12px;
       font-weight: 700;
-      letter-spacing: .06em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      cursor: pointer;
     }
+
     button:hover { background: var(--blue); }
+
     footer {
       padding: 12px 34px;
       background: var(--navy);
-      color: #dce8f2;
+      color: #dfeaf3;
       font-size: 11px;
       text-align: right;
     }
 
-    @media (max-width: 820px) {
-      header { align-items: flex-start; flex-direction: column; }
-      nav { justify-content: flex-start; }
+    @media (max-width: 860px) {
+      .topbar { flex-direction: column; align-items: flex-start; }
+      .nav { justify-content: flex-start; }
       .intro-grid, .register-grid, .profile { grid-template-columns: 1fr; }
-      .modules { grid-template-columns: repeat(2, 1fr); }
+      .program-grid, .grid-2, .facts { grid-template-columns: 1fr 1fr; }
+      .section { padding-left: 20px; padding-right: 20px; }
+      .topbar { padding-left: 20px; padding-right: 20px; }
     }
-    @media (max-width: 560px) {
-      .page { width: calc(100% - 16px); margin: 8px auto; }
-      header, section { padding-left: 18px; padding-right: 18px; }
+
+    @media (max-width: 540px) {
+      .page { margin: 10px; width: auto; }
+      .facts, .grid-2, .program-grid, .form-row { grid-template-columns: 1fr; }
       .brand { font-size: 24px; }
-      .facts, .cards, .modules, .form-row { grid-template-columns: 1fr; }
-      footer { padding-left: 18px; padding-right: 18px; }
+      .heading { font-size: 17px; }
+      footer { padding-left: 20px; padding-right: 20px; }
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <header>
+    <header class="topbar">
       <div>
         <h1 class="brand">Eloquent 言值</h1>
-        <p class="tagline">Preparing Future Leaders in Banking and Business</p>
+        <div class="tagline">Preparing Future Leaders in Banking and Business</div>
       </div>
-      <nav aria-label="Primary navigation">
-        <a href="#introduction">Introduction</a>
-        <a href="#look-for">What Banks Look For</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#intro">Introduction</a>
+        <a href="#lookfor">What Banks Look For</a>
         <a href="#why">Why This Programme</a>
-        <a href="#structure">Structure</a>
-        <a href="#about">About</a>
-        <a href="#register">Register</a>
+        <a href="#structure">Programme Structure</a>
+        <a href="#about">About Selina Sia</a>
+        <a href="#register">Register Interest</a>
       </nav>
     </header>
 
     <main>
-      <section id="introduction">
-        <h2 class="section-title">1. Introduction</h2>
+      <section class="section" id="intro">
+        <h2 class="heading">1. Introduction</h2>
         <div class="intro-grid">
-          <div>
-            <p>Eloquent 言值 is an executive education platform designed to help students and early-career professionals translate academic potential into professional readiness.</p>
-            <p>Through practical insight from the financial sector, participants develop the confidence, clarity, and commercial judgment needed to take their next step in banking and business.</p>
+          <div class="copy">
+            <p>Eloquent 言值 is a focused learning experience for students and early-career professionals who want to understand how banking and business leaders assess potential.</p>
+            <p>It brings together insight from the financial sector and practical professional guidance, helping participants prepare for a competitive and demanding workplace.</p>
           </div>
-          <div class="callout">A practical perspective on how leading employers identify future talent.</div>
+          <div class="callout">What Banks Really Look For in New Joiners</div>
         </div>
         <div class="facts">
-          <div class="fact"><small>Focus</small><strong>Banking &amp; Business</strong></div>
-          <div class="fact"><small>Audience</small><strong>Students &amp; Graduates</strong></div>
-          <div class="fact"><small>Founder</small><strong>Selina Sia</strong></div>
+          <div class="fact"><span class="fact-label">Focus</span><span class="fact-value">Banking &amp; Business</span></div>
+          <div class="fact"><span class="fact-label">Audience</span><span class="fact-value">Students &amp; Graduates</span></div>
+          <div class="fact"><span class="fact-label">Founder</span><span class="fact-value">Selina Sia</span></div>
         </div>
       </section>
 
-      <section id="look-for">
-        <h2 class="section-title">2. What Banks Really Look For in New Joiners</h2>
-        <div class="cards">
-          <article class="card"><h3>Commercial Awareness</h3><p>Understanding markets, clients, businesses, and the wider forces shaping financial decisions.</p></article>
-          <article class="card"><h3>Structured Thinking</h3><p>Breaking down unfamiliar problems, forming clear conclusions, and communicating recommendations with confidence.</p></article>
-          <article class="card"><h3>Professional Presence</h3><p>Showing curiosity, judgment, resilience, and the maturity to contribute in high-expectation environments.</p></article>
-          <article class="card"><h3>Learning Agility</h3><p>Demonstrating the capacity to absorb feedback, adapt quickly, and grow beyond technical knowledge.</p></article>
+      <section class="section" id="lookfor">
+        <h2 class="heading">2. What Banks Really Look For in New Joiners</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Commercial Awareness</h3>
+            <p>Understanding how businesses, markets, and clients behave in real-world environments.</p>
+          </article>
+          <article class="card">
+            <h3>Structured Thinking</h3>
+            <p>Turning complexity into clear reasoning and decision-making under pressure.</p>
+          </article>
+          <article class="card">
+            <h3>Professional Presence</h3>
+            <p>Demonstrating composure, maturity, and confidence in demanding situations.</p>
+          </article>
+          <article class="card">
+            <h3>Learning Agility</h3>
+            <p>Showing a willingness to grow, absorb feedback, and adapt quickly.</p>
+          </article>
         </div>
       </section>
 
-      <section id="why">
-        <h2 class="section-title">3. Why This Programme</h2>
-        <div class="cards">
-          <article class="card"><h3>Industry Perspective</h3><p>Gain an informed view of the behaviors and capabilities valued by leading global financial institutions.</p></article>
-          <article class="card"><h3>Career Readiness</h3><p>Prepare for interviews, internships, graduate programmes, and the first years of professional life.</p></article>
-          <article class="card"><h3>Practical Application</h3><p>Use real-world scenarios to turn principles into stronger answers, decisions, and professional habits.</p></article>
-          <article class="card"><h3>Long-Term Advantage</h3><p>Build a durable foundation for communicating your value and leading with greater confidence.</p></article>
+      <section class="section" id="why">
+        <h2 class="heading">3. Why This Programme</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Industry Insight</h3>
+            <p>Participants gain practical understanding of what leading employers value in future candidates.</p>
+          </article>
+          <article class="card">
+            <h3>Career Readiness</h3>
+            <p>Designed to improve confidence in interviews, internships, and early-career transitions.</p>
+          </article>
+          <article class="card">
+            <h3>Professional Practice</h3>
+            <p>Brings together strategic thinking, communication, and leadership behaviours in a clear framework.</p>
+          </article>
+          <article class="card">
+            <h3>Long-Term Edge</h3>
+            <p>Builds a stronger foundation for both banking and broader business leadership paths.</p>
+          </article>
         </div>
       </section>
 
-      <section id="structure">
-        <h2 class="section-title">4. Programme Structure</h2>
-        <div class="modules">
-          <article class="module"><span class="module-number">Module 01</span><h3>Professional Mindset</h3><p>Adopting the standards, habits, and perspective of a future banking professional.</p></article>
-          <article class="module"><span class="module-number">Module 02</span><h3>What Banks Value</h3><p>Examining the attributes that distinguish strong candidates from the wider applicant pool.</p></article>
-          <article class="module"><span class="module-number">Module 03</span><h3>Communication &amp; Influence</h3><p>Building concise, credible communication for interviews and professional settings.</p></article>
-          <article class="module"><span class="module-number">Module 04</span><h3>Career Positioning</h3><p>Creating a compelling narrative that connects your experience, potential, and ambition.</p></article>
+      <section class="section" id="structure">
+        <h2 class="heading">4. Programme Structure</h2>
+        <div class="program-grid">
+          <article class="module">
+            <span class="module-tag">Module 01</span>
+            <h3>Professional Mindset</h3>
+            <p>How to think and behave with the maturity expected in high-performance environments.</p>
+          </article>
+          <article class="module">
+            <span class="module-tag">Module 02</span>
+            <h3>What Banks Value</h3>
+            <p>Understanding the competencies and behaviors employers assess in new joiners.</p>
+          </article>
+          <article class="module">
+            <span class="module-tag">Module 03</span>
+            <h3>Communication &amp; Influence</h3>
+            <p>Developing the clarity and confidence to express ideas in professional settings.</p>
+          </article>
+          <article class="module">
+            <span class="module-tag">Module 04</span>
+            <h3>Career Positioning</h3>
+            <p>Turning potential into a coherent story for internships and graduate opportunities.</p>
+          </article>
         </div>
       </section>
 
-      <section id="about">
-        <h2 class="section-title">5. About Selina Sia</h2>
+      <section class="section" id="about">
+        <h2 class="heading">5. About Selina Sia</h2>
         <div class="profile">
-          <div class="initials" aria-label="Selina Sia">SS</div>
-          <ul class="credentials">
-            <li><b>Founder</b> Selina Sia</li>
-            <li><b>Experience</b> J.P. Morgan · UBS · Credit Suisse</li>
-            <li><b>Perspective</b> Banking and investment experience across leading global institutions</li>
-            <li><b>Mission</b> Helping emerging talent connect potential with professional readiness</li>
+          <div class="portrait" aria-label="Selina Sia initials">SS</div>
+          <ul class="bio">
+            <li><b>Founder:</b> Selina Sia</li>
+            <li><b>Experience:</b> J.P. Morgan, UBS, Credit Suisse</li>
+            <li><b>Background:</b> Former banking and investment professional with international experience</li>
+            <li><b>Mission:</b> Helping emerging talent build confidence and professional readiness</li>
           </ul>
         </div>
       </section>
 
-      <section id="register">
-        <h2 class="section-title">6. Register Interest</h2>
+      <section class="section" id="register">
+        <h2 class="heading">6. Register Interest</h2>
         <div class="register-grid">
           <div class="register-note">
-            <p>Register your interest to receive further information about <strong>What Banks Really Look For in New Joiners</strong>.</p>
-            <p>Places and programme details will be shared with interested participants as they become available.</p>
+            <p>For students and early-career professionals seeking a clearer understanding of how leading banks assess capability, potential, and leadership readiness.</p>
           </div>
-          <form onsubmit="event.preventDefault(); alert('Thank you for registering your interest.');">
+          <form>
             <div class="form-row">
-              <input type="text" name="name" placeholder="Full name" aria-label="Full name" required />
-              <input type="email" name="email" placeholder="Email address" aria-label="Email address" required />
+              <input type="text" placeholder="Full Name" aria-label="Full Name" />
+              <input type="email" placeholder="Email Address" aria-label="Email Address" />
             </div>
             <div class="form-row">
-              <input type="text" name="organisation" placeholder="University / organisation" aria-label="University or organisation" />
-              <input type="text" name="stage" placeholder="Career stage" aria-label="Career stage" />
+              <input type="text" placeholder="University / Organisation" aria-label="University / Organisation" />
+              <input type="text" placeholder="Career Stage" aria-label="Career Stage" />
             </div>
-            <textarea name="message" rows="4" placeholder="Tell us about your interest" aria-label="Tell us about your interest"></textarea>
-            <button type="submit">Register Interest</button>
+            <textarea rows="4" placeholder="Tell us about your interest..." aria-label="Tell us about your interest"></textarea>
+            <button type="submit">Register Now</button>
           </form>
         </div>
       </section>
