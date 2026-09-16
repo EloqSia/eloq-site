@@ -1,17 +1,494 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Eloquent 言值</title><style>
-body{margin:0;background:#f7f8fa;color:#2b2b2b;font-family:Calibri,Arial,sans-serif;line-height:1.5}
-.page{max-width:980px;margin:0 auto;background:#fff}
-.hero{padding:28px 42px 22px;border-bottom:3px solid #336699}
-.brand{font-size:30px;font-weight:700;color:#003366;margin:0}
-.tag{font-size:18px;color:#336699;margin:8px 0 0}
-.intro{font-size:15px;color:#444;max-width:760px;margin-top:14px}
-.section{padding:20px 42px;border-bottom:1px solid #e4e8ed}
-.h{font-size:22px;color:#336699;font-weight:700;margin:0 0 12px}
-.sub{font-size:16px;font-weight:700;color:#003366;margin:0 0 6px}
-.p{font-size:15px;margin:8px 0}
-.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:10px}
-.box{background:#eef4f8;padding:12px;border-left:4px solid #336699;font-size:14px}
-.bio{background:#fafbfd;padding:16px;border:1px solid #d9e2ec}
-.contact{font-size:16px;font-weight:700;color:#003366}
-@media(max-width:800px){.grid{grid-template-columns:1fr 1fr}.hero,.section{padding:18px}}
-</style></head><body><div class="page"><div class="hero"><div class="brand">Eloquent 言值</div><div class="tag">Preparing Future Leaders in Banking and Business</div><div class="intro">Drawing on nearly three decades of investment banking and private banking experience at leading global financial institutions, including J.P. Morgan, UBS and Credit Suisse.</div></div><div class="section"><div class="h">Pilot Programme Now Open</div><div class="sub">What Banks Really Look For in New Joiners</div><div class="p"><strong>4 Sessions × 2 Hours</strong></div><div class="p">A practical introduction to how banks identify, assess and develop junior talent.</div></div><div class="section"><div class="h">Why This Programme</div><div class="p">Many students devote considerable effort to academic achievement and technical knowledge.</div><div class="p">Banks also evaluate professional judgement, communication effectiveness, learning agility, credibility, teamwork, commercial awareness and self-awareness.</div></div><div class="section"><div class="h">Programme Structure</div><div class="grid"><div class="box"><strong>Session 1</strong><br>Beyond Grades</div><div class="box"><strong>Session 2</strong><br>Why Students Get Overlooked</div><div class="box"><strong>Session 3</strong><br>Top Performers</div><div class="box"><strong>Session 4</strong><br>Development Roadmap</div></div></div><div class="section"><div class="h">Selina Sia</div><div class="bio"><div class="p">Former senior executive with Credit Suisse, and previous experience at J.P. Morgan and UBS.</div><div class="p">Nearly three decades of experience across investment banking, private banking and Greater China capital markets.</div><div class="p">Established Eloquent to help students bridge the gap between academic achievement and workplace success.</div></div></div><div class="section"><div class="h">Register Interest</div><div class="contact">selina_sia@hotmail.com</div></div></div></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eloquent 言值</title>
+  <style>
+    :root {
+      --blue: #336699;
+      --navy: #003366;
+      --blue-soft: #edf3f8;
+      --bg: #f3f5f7;
+      --panel: #ffffff;
+      --panel-alt: #f8fafc;
+      --text: #1d2a35;
+      --muted: #5d6d7b;
+      --line: #dfe6ee;
+      --shadow: rgba(0, 51, 102, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 26px auto;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: 0 8px 24px var(--shadow);
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 18px 35px 12px;
+      border-bottom: 3px solid var(--blue);
+      background: #fff;
+    }
+
+    .brand-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand {
+      margin: 0;
+      font-size: 30px;
+      line-height: 1.1;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--navy);
+    }
+
+    .tagline {
+      margin: 0;
+      font-size: 15px;
+      color: var(--blue);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 16px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .nav a {
+      color: var(--navy);
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .nav a:hover { opacity: 1; }
+
+    .section {
+      padding: 20px 35px 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .heading {
+      margin: 0 0 12px;
+      font-size: 20px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: var(--navy);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .intro-row {
+      display: grid;
+      grid-template-columns: 1.35fr 0.85fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--text);
+    }
+
+    .p + .p { margin-top: 10px; }
+
+    .highlight {
+      background: linear-gradient(135deg, var(--blue-soft), #f0f6fb);
+      border-left: 4px solid var(--blue);
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .fact-box {
+      padding: 14px 14px 12px;
+      background: var(--panel-alt);
+      border: 1px solid var(--line);
+    }
+
+    .fact-label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .fact-value {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 14px 16px;
+      background: var(--panel-alt);
+      border: 1px solid var(--line);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .card p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .module {
+      background: linear-gradient(180deg, #ffffff, #f4f8fb);
+      border: 1px solid var(--line);
+      padding: 14px 12px;
+    }
+
+    .module-number {
+      display: inline-block;
+      margin-bottom: 8px;
+      padding: 3px 9px;
+      background: var(--blue-soft);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .module h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .module p {
+      margin: 0;
+      font-size: 12.5px;
+      color: var(--text);
+    }
+
+    .profile {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .portrait {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 42px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--line);
+    }
+
+    .bio-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 9px;
+      font-size: 13px;
+    }
+
+    .bio-list li {
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .bio-list li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .label {
+      display: inline-block;
+      min-width: 120px;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    .register-box {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .register-copy {
+      background: var(--panel-alt);
+      border: 1px solid var(--line);
+      padding: 16px;
+    }
+
+    .register-copy p {
+      margin: 0;
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+      background: #fff;
+      border: 1px solid var(--line);
+      padding: 16px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px 11px;
+      font: inherit;
+      border: 1px solid #c9d5e1;
+      background: #fff;
+      color: var(--text);
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid rgba(51, 102, 153, 0.18);
+      border-color: var(--blue);
+    }
+
+    button {
+      border: none;
+      background: var(--navy);
+      color: #fff;
+      font: inherit;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      cursor: pointer;
+    }
+
+    button:hover { background: var(--blue); }
+
+    @media (max-width: 860px) {
+      .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav {
+        justify-content: flex-start;
+      }
+
+      .intro-row,
+      .register-box,
+      .profile,
+      .grid-2,
+      .facts,
+      .program-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section { padding: 18px 20px; }
+      .topbar { padding: 16px 20px 10px; }
+      .page { margin: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand-block">
+        <h1 class="brand">Eloquent 言值</h1>
+        <p class="tagline">Preparing Future Leaders in Banking and Business</p>
+      </div>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#intro">Introduction</a>
+        <a href="#why">Why This Programme</a>
+        <a href="#structure">Programme Structure</a>
+        <a href="#about">About Selina Sia</a>
+        <a href="#register">Register Interest</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="section" id="intro">
+        <h2 class="heading">1. Introduction</h2>
+        <div class="intro-row">
+          <div>
+            <p class="p">Eloquent 言值 is a high-impact learning experience designed for students and early-career professionals who want to build the confidence, clarity, and commercial judgment required to thrive in banking and business.</p>
+            <p class="p">The programme bridges academic potential with real-world expectations from the financial sector, helping participants understand what employers truly value when selecting future leaders.</p>
+          </div>
+          <div class="highlight">What Banks Really Look For in New Joiners</div>
+        </div>
+
+        <div class="facts">
+          <div class="fact-box">
+            <span class="fact-label">Focus</span>
+            <span class="fact-value">Banking &amp; Business</span>
+          </div>
+          <div class="fact-box">
+            <span class="fact-label">Audience</span>
+            <span class="fact-value">Students &amp; Graduates</span>
+          </div>
+          <div class="fact-box">
+            <span class="fact-label">Founder</span>
+            <span class="fact-value">Selina Sia</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="why">
+        <h2 class="heading">2. Why This Programme</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>Real Banking Insight</h3>
+            <p>Participants learn how market participants evaluate potential, not just academic excellence. The programme translates industry practice into practical, career-relevant guidance.</p>
+          </article>
+          <article class="card">
+            <h3>Career Readiness</h3>
+            <p>From communication to commercial awareness, the curriculum prepares candidates for the realities of interviews, internships, and graduate transitions.</p>
+          </article>
+          <article class="card">
+            <h3>Leadership Development</h3>
+            <p>Future leaders need more than technical knowledge. This programme builds structured thinking, confidence, and presence in high-stakes professional settings.</p>
+          </article>
+          <article class="card">
+            <h3>Practical Edge</h3>
+            <p>Through case-based learning and an executive lens, participants develop the mindset needed to stand out in competitive banking and business environments.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="structure">
+        <h2 class="heading">3. Programme Structure</h2>
+        <div class="program-grid">
+          <article class="module">
+            <div class="module-number">Module 01</div>
+            <h3>Professional Mindset</h3>
+            <p>How to think and behave like a credible future banker or business leader.</p>
+          </article>
+          <article class="module">
+            <div class="module-number">Module 02</div>
+            <h3>What Banks Value</h3>
+            <p>Understanding the behaviors, attributes, and priorities of leading financial institutions.</p>
+          </article>
+          <article class="module">
+            <div class="module-number">Module 03</div>
+            <h3>Communication &amp; Influence</h3>
+            <p>Developing executive-level clarity, articulation, and confidence in professional settings.</p>
+          </article>
+          <article class="module">
+            <div class="module-number">Module 04</div>
+            <h3>Career Positioning</h3>
+            <p>Turning potential into a compelling story for internships, grad programmes, and long-term growth.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <h2 class="heading">4. About Selina Sia</h2>
+        <div class="profile">
+          <div class="portrait" aria-label="Selina Sia portrait placeholder">SS</div>
+          <div>
+            <ul class="bio-list">
+              <li><span class="label">Founder:</span> Selina Sia</li>
+              <li><span class="label">Background:</span> Former banking and investment professional with experience across major global institutions</li>
+              <li><span class="label">Experience:</span> J.P. Morgan, UBS, Credit Suisse</li>
+              <li><span class="label">Approach:</span> Helping emerging talent connect potential with professional readiness in banking and business</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="register">
+        <h2 class="heading">5. Register Interest</h2>
+        <div class="register-box">
+          <div class="register-copy">
+            <p>For students and early-career professionals seeking a sharper understanding of how leading banks assess capability, potential, and leadership readiness, this programme offers a practical and strategic advantage.</p>
+          </div>
+
+          <form>
+            <div class="row">
+              <input type="text" placeholder="Full Name" aria-label="Full Name" />
+              <input type="email" placeholder="Email Address" aria-label="Email Address" />
+            </div>
+            <div class="row">
+              <input type="text" placeholder="University / Organisation" aria-label="University / Organisation" />
+              <input type="text" placeholder="Career Stage" aria-label="Career Stage" />
+            </div>
+            <textarea rows="4" placeholder="Tell us about your interest..." aria-label="Tell us about your interest"></textarea>
+            <button type="submit">Register Now</button>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
