@@ -1,420 +1,772 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eloquent 言值</title>
-  <style>
-    :root {
-      --navy: #0F2942;
-      --gold: #C8A45D;
-      --ivory: #F8F7F4;
-      --grey: #E8EBEF;
-      --panel: #ffffff;
-      --text: #243746;
-      --muted: #637382;
-      --line: #d8dee4;
-    }
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Eloquent 言值</title> <style> :root{ --navy:#163A5F; --blue:#336699; --accent:#5B86B3; --light-blue:#DCE8F2; --light-grey:#EEF2F5; --dark-grey:#4B5865; --white:#FFFFFF; --shadow:0 18px 45px rgba(22,58,95,0.12); --radius:22px; --container:1180px; }*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background:linear-gradient(180deg, #f8fafc 0%, #edf3f8 100%);
+  color:var(--navy);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      background: var(--ivory);
-      color: var(--text);
-      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-      line-height: 1.5;
-    }
+img{max-width:100%; display:block}
+.container{
+  width:min(var(--container), calc(100% - 40px));
+  margin:0 auto;
+}
 
-    .page {
-      max-width: 1080px;
-      margin: 24px auto;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      box-shadow: 0 8px 24px rgba(15, 41, 66, 0.08);
-    }
+.topbar{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid rgba(22,58,95,0.08);
+}
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 20px;
-      padding: 18px 34px 12px;
-      border-bottom: 3px solid var(--gold);
-      background: var(--panel);
-    }
+.topbar-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:78px;
+  gap:20px;
+}
 
-    .brand {
-      margin: 0;
-      font-size: 30px;
-      font-weight: 700;
-      line-height: 1.1;
-      color: var(--navy);
-      letter-spacing: 0.02em;
-    }
+.brand{
+  font-size:1.9rem;
+  font-weight:700;
+  letter-spacing:0.04em;
+  color:var(--navy);
+  white-space:nowrap;
+}
 
-    .tagline {
-      margin: 4px 0 0;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.04em;
-    }
+.brand span{
+  font-weight:600;
+  color:var(--blue);
+}
 
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      gap: 14px 18px;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+.nav{
+  display:flex;
+  align-items:center;
+  gap:28px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
 
-    .nav a {
-      color: var(--navy);
-      text-decoration: none;
-    }
+.nav .item{
+  font-size:0.77rem;
+  font-weight:600;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--dark-grey);
+  opacity:0.9;
+  white-space:nowrap;
+}
 
-    .nav a:hover { color: var(--gold); }
+.nav .tag{
+  background:var(--light-blue);
+  color:var(--navy);
+  border:1px solid rgba(22,58,95,0.08);
+  padding:10px 16px;
+  border-radius:999px;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:700;
+}
 
-    .section {
-      padding: 22px 34px 20px;
-      border-bottom: 1px solid var(--line);
-    }
+.hero{
+  padding:54px 0 18px;
+}
 
-    .section:last-of-type { border-bottom: none; }
+.hero-inner{
+  display:grid;
+  grid-template-columns:1.3fr 0.9fr;
+  gap:42px;
+  align-items:stretch;
+}
 
-    .heading {
-      margin: 0 0 12px;
-      font-size: 19px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--navy);
-    }
+.eyebrow{
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:999px;
+  background:var(--light-blue);
+  color:var(--navy);
+  font-weight:700;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  margin-bottom:18px;
+}
 
-    .heading::before {
-      content: "";
-      display: inline-block;
-      width: 18px;
-      height: 3px;
-      background: var(--gold);
-      margin: 0 8px 4px 0;
-      vertical-align: middle;
-    }
+h1{
+  margin:0;
+  font-size: clamp(2.4rem, 4vw, 4.25rem);
+  line-height:1.08;
+  letter-spacing:-0.05em;
+  font-weight:700;
+  color:var(--navy);
+  max-width:640px;
+}
 
-    .intro-grid {
-      display: grid;
-      grid-template-columns: 1.5fr 0.8fr;
-      gap: 18px;
-      align-items: start;
-    }
+.subhead{
+  font-size:1.06rem;
+  line-height:1.75;
+  color:var(--dark-grey);
+  max-width:680px;
+  margin-top:22px;
+  margin-bottom:18px;
+}
 
-    .copy p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--text);
-    }
+.hero-panel{
+  background:linear-gradient(145deg, rgba(22,58,95,0.97), rgba(51,102,153,0.9));
+  color:var(--white);
+  border-radius:var(--radius);
+  padding:30px 28px 24px;
+  box-shadow:var(--shadow);
+  min-height: 100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+  position:relative;
+}
 
-    .copy p + p { margin-top: 10px; }
+.hero-panel::before{
+  content:"";
+  position:absolute;
+  inset:auto -40px -50px auto;
+  width:160px;
+  height:160px;
+  background:rgba(255,255,255,0.06);
+  border-radius:50%;
+}
 
-    .callout {
-      background: var(--ivory);
-      border-left: 4px solid var(--gold);
-      padding: 14px 16px;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--navy);
-    }
+.panel-title{
+  margin:0 0 8px;
+  font-weight:700;
+  font-size:1.08rem;
+  letter-spacing:-0.02em;
+  position:relative;
+  z-index:1;
+}
 
-    .facts {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 16px;
-    }
+.panel-card{
+  position:relative;
+  z-index:1;
+  background: rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:18px;
+  padding:20px 18px 18px;
+  margin-top:18px;
+}
 
-    .fact {
-      padding: 12px 13px;
-      background: var(--grey);
-      border: 1px solid var(--line);
-    }
+.panel-card strong{
+  display:block;
+  margin-bottom:10px;
+  font-size:0.95rem;
+  letter-spacing:0.02em;
+  color:#edf4fb;
+}
 
-    .fact-label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--muted);
-    }
+.panel-card ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:grid;
+  gap:10px;
+  color:rgba(255,255,255,0.9);
+  font-size:0.95rem;
+}
 
-    .fact-value {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--navy);
-    }
+.panel-card li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+}
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-    }
+.panel-card li::before{
+  content:"•";
+  color:var(--light-blue);
+  font-size:1.4rem;
+  line-height:1;
+  margin-top:-2px;
+}
 
-    .card {
-      padding: 14px 15px;
-      background: var(--grey);
-      border: 1px solid var(--line);
-    }
+.cta-strip{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:16px;
+  margin-top:26px;
+  margin-bottom:22px;
+}
 
-    .card h3 {
-      margin: 0 0 7px;
-      font-size: 15px;
-      color: var(--navy);
-    }
+.cta{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:58px;
+  padding:0 24px;
+  border-radius:14px;
+  background:var(--navy);
+  color:var(--white);
+  font-weight:700;
+  letter-spacing:0.03em;
+  border:1px solid rgba(22,58,95,0.05);
+  box-shadow:0 10px 25px rgba(22,58,95,0.18);
+  font-size:0.95rem;
+  white-space:nowrap;
+}
 
-    .card p {
-      margin: 0;
-      font-size: 13px;
-      color: var(--text);
-    }
+.meta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:18px;
+  margin-top:12px;
+}
 
-    .program-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
+.meta-box{
+  min-width:150px;
+  background:rgba(255,255,255,0.8);
+  border:1px solid rgba(22,58,95,0.08);
+  border-radius:15px;
+  padding:16px 18px;
+  box-shadow:0 8px 22px rgba(22,58,95,0.04);
+}
 
-    .module {
-      background: linear-gradient(180deg, #fff, var(--ivory));
-      border: 1px solid var(--line);
-      padding: 14px 12px;
-    }
+.meta-box .num{
+  display:block;
+  color:var(--navy);
+  font-weight:800;
+  font-size:1.45rem;
+  letter-spacing:-0.05em;
+  line-height:1;
+  margin-bottom:7px;
+}
 
-    .module-tag {
-      display: inline-block;
-      margin-bottom: 8px;
-      background: var(--ivory);
-      color: var(--gold);
-      padding: 3px 8px;
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+.meta-box .label{
+  font-size:0.8rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--dark-grey);
+  font-weight:700;
+}
 
-    .module h3 {
-      margin: 0 0 8px;
-      font-size: 14px;
-      color: var(--navy);
-    }
+.section{
+  padding:34px 0 8px;
+}
 
-    .module p {
-      margin: 0;
-      font-size: 12.5px;
-      color: var(--text);
-    }
+.section-header{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:20px;
+  margin-bottom:20px;
+}
 
-    .about-copy {
-      max-width: 820px;
-      font-size: 14px;
-    }
+.kicker{
+  margin:0 0 12px;
+  color:var(--blue);
+  font-size:0.76rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:800;
+}
 
-    .about-copy p {
-      margin: 0;
-    }
+h2{
+  margin:0;
+  font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+  line-height:1.12;
+  letter-spacing:-0.04em;
+  color:var(--navy);
+}
 
-    .about-copy p + p { margin-top: 10px; }
+.lead{
+  color:var(--dark-grey);
+  font-size:1rem;
+  max-width:760px;
+  margin:0;
+}
 
-    .about-highlight {
-      margin-top: 14px !important;
-      padding-left: 14px;
-      border-left: 3px solid var(--gold);
-      color: var(--navy);
-      font-weight: 700;
-    }
+.why-wrap{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:28px;
+  margin-top:18px;
+}
 
-    .register-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 18px;
-      align-items: start;
-    }
+.why-copy{
+  background:var(--white);
+  border:1px solid rgba(22,58,95,0.06);
+  border-radius:var(--radius);
+  padding:28px 28px 22px;
+  box-shadow:0 12px 28px rgba(22,58,95,0.04);
+}
 
-    .register-note {
-      background: var(--grey);
-      border: 1px solid var(--line);
-      padding: 16px;
-    }
+.why-copy p{
+  margin:0 0 14px;
+  color:var(--dark-grey);
+  font-size:1rem;
+}
 
-    .register-note p {
-      margin: 0;
-      font-size: 13px;
-      color: var(--text);
-    }
+.why-list{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(160px, 1fr));
+  gap:14px;
+  margin-top:18px;
+}
 
-    form {
-      display: grid;
-      gap: 10px;
-      border: 1px solid var(--line);
-      padding: 16px;
-      background: #fff;
-    }
+.chip{
+  background:var(--light-grey);
+  border:1px solid rgba(22,58,95,0.06);
+  border-radius:14px;
+  padding:14px 16px;
+  color:var(--navy);
+  font-weight:700;
+  font-size:0.95rem;
+  line-height:1.4;
+}
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
+.insight{
+  background:linear-gradient(180deg, var(--light-blue), rgba(220,232,242,0.72));
+  border-radius:var(--radius);
+  padding:26px 24px;
+  border:1px solid rgba(22,58,95,0.06);
+}
 
-    input, textarea {
-      width: 100%;
-      padding: 10px 11px;
-      font: inherit;
-      font-size: 13px;
-      border: 1px solid #c7d0d8;
-      background: #fff;
-      color: var(--text);
-      resize: vertical;
-    }
+.insight-box{
+  padding:18px 18px 14px;
+  background:rgba(255,255,255,0.42);
+  border:1px solid rgba(22,58,95,0.06);
+  border-radius:16px;
+  margin-bottom:16px;
+}
 
-    input:focus, textarea:focus {
-      outline: 2px solid rgba(200, 164, 93, 0.2);
-      border-color: var(--gold);
-    }
+.insight-box:last-child{margin-bottom:0}
 
-    button {
-      border: none;
-      background: var(--gold);
-      color: var(--navy);
-      padding: 12px 18px;
-      font: inherit;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
+.insight-label{
+  display:block;
+  color:var(--blue);
+  font-size:0.72rem;
+  letter-spacing:0.13em;
+  text-transform:uppercase;
+  font-weight:800;
+  margin-bottom:8px;
+}
 
-    button:hover { background: #b18e4d; }
+.insight-copy{
+  margin:0;
+  color:var(--navy);
+  font-size:1.02rem;
+  line-height:1.72;
+  font-weight:600;
+}
 
-    footer {
-      padding: 12px 34px;
-      background: var(--navy);
-      color: #e7edf2;
-      font-size: 11px;
-      text-align: right;
-    }
+.cards{
+  display:grid;
+  grid-template-columns:repeat(4, minmax(220px, 1fr));
+  gap:20px;
+  margin-top:24px;
+}
 
-    @media (max-width: 860px) {
-      .topbar { flex-direction: column; align-items: flex-start; }
-      .nav { justify-content: flex-start; }
-      .intro-grid, .register-grid { grid-template-columns: 1fr; }
-      .program-grid, .grid-2, .facts { grid-template-columns: 1fr 1fr; }
-      .section { padding-left: 20px; padding-right: 20px; }
-      .topbar { padding-left: 20px; padding-right: 20px; }
-    }
+.session-card{
+  background:var(--white);
+  border:1px solid rgba(22,58,95,0.07);
+  border-radius:18px;
+  padding:22px 20px 20px;
+  box-shadow:0 12px 28px rgba(22,58,95,0.04);
+  min-height:230px;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
 
-    @media (max-width: 540px) {
-      .page { margin: 10px; width: auto; }
-      .facts, .grid-2, .program-grid, .form-row { grid-template-columns: 1fr; }
-      .brand { font-size: 24px; }
-      .heading { font-size: 17px; }
-      footer { padding-left: 20px; padding-right: 20px; }
-    }
-  </style>
-</head>
-<body>
-  <div class="page">
-    <header class="topbar">
-      <div>
-        <h1 class="brand">Eloquent 言值</h1>
-        <div class="tagline">Preparing Future Leaders in Banking and Business</div>
+.session-number{
+  display:inline-block;
+  color:var(--blue);
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:800;
+  margin-bottom:16px;
+}
+
+.session-card h3{
+  margin:0 0 12px;
+  font-size:1.35rem;
+  line-height:1.2;
+  letter-spacing:-0.03em;
+  color:var(--navy);
+}
+
+.session-card p{
+  margin:0;
+  color:var(--dark-grey);
+  font-size:0.98rem;
+  line-height:1.7;
+}
+
+.about{
+  padding-top:40px;
+}
+
+.about-shell{
+  background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(238,242,245,0.85));
+  border:1px solid rgba(22,58,95,0.07);
+  border-radius:30px;
+  padding:28px 28px 18px;
+  box-shadow:0 18px 40px rgba(22,58,95,0.06);
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:26px;
+  align-items:start;
+}
+
+.bio{
+  color:var(--dark-grey);
+  font-size:1.02rem;
+  line-height:1.8;
+}
+
+.bio p{
+  margin:0 0 18px;
+}
+
+.credentials{
+  background:linear-gradient(180deg, var(--navy), var(--blue));
+  border-radius:20px;
+  padding:22px 20px;
+  color:var(--white);
+  box-shadow:0 14px 30px rgba(22,58,95,0.18);
+}
+
+.credentials h3{
+  margin:0 0 16px;
+  font-size:1.1rem;
+  letter-spacing:-0.02em;
+}
+
+.credentials ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:12px;
+}
+
+.credentials li{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  font-size:0.96rem;
+  line-height:1.55;
+  color:rgba(255,255,255,0.92);
+}
+
+.credentials li::before{
+  content:"•";
+  color:var(--light-blue);
+  font-size:1.4rem;
+  line-height:1;
+  margin-top:-2px;
+}
+
+.register{
+  padding:38px 0 60px;
+}
+
+.register-box{
+  background:linear-gradient(180deg, var(--light-blue), rgba(220,232,242,0.9));
+  border:1px solid rgba(22,58,95,0.08);
+  border-radius:28px;
+  padding:28px 26px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  box-shadow:0 16px 36px rgba(22,58,95,0.05);
+}
+
+.register-copy{
+  max-width:700px;
+}
+
+.register-copy h2{
+  margin:0 0 10px;
+  font-size: clamp(1.8rem, 2vw, 2.5rem);
+}
+
+.register-copy p{
+  margin:0;
+  color:var(--dark-grey);
+  font-size:1rem;
+}
+
+.email{
+  min-width:260px;
+  background:var(--white);
+  border:1px solid rgba(22,58,95,0.08);
+  border-radius:16px;
+  padding:16px 18px;
+  text-align:center;
+  color:var(--navy);
+  font-weight:700;
+  letter-spacing:0.02em;
+  font-size:1.04rem;
+  box-shadow:0 10px 20px rgba(22,58,95,0.06);
+}
+
+footer{
+  border-top:1px solid rgba(22,58,95,0.09);
+  background:rgba(255,255,255,0.7);
+}
+
+.footer-inner{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  color:var(--dark-grey);
+  font-size:0.86rem;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  font-weight:700;
+}
+
+.footer-brand{
+  color:var(--navy);
+  font-size:1rem;
+  letter-spacing:0.04em;
+  text-transform:none;
+}
+
+@media (max-width: 980px){
+  .hero-inner,
+  .why-wrap,
+  .about-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:repeat(2, minmax(220px, 1fr));
+  }
+
+  .register-box{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .email{
+    width:100%;
+  }
+}
+
+@media (max-width: 720px){
+  .topbar-inner{
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    padding:14px 0 12px;
+  }
+
+  .nav{
+    gap:12px 18px;
+    justify-content:flex-start;
+  }
+
+  .brand{font-size:1.5rem}
+
+  .cta-strip{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+
+  .meta{
+    display:grid;
+    grid-template-columns:repeat(2, minmax(120px,1fr));
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .why-list{
+    grid-template-columns:1fr;
+  }
+
+  .footer-inner{
+    flex-direction:column;
+    justify-content:center;
+    text-align:center;
+    padding:16px 0;
+  }
+}
+
+@media (max-width: 480px){
+  .container{width:min(var(--container), calc(100% - 24px))}
+  .hero{padding-top:30px}
+  .panel-card ul{font-size:0.88rem}
+  .hero-panel{padding:22px 20px 18px}
+  .why-copy{padding:22px 20px 18px}
+  .session-card{padding:18px 16px 16px}
+  .about-shell{padding:22px 18px 16px}
+  .register-box{padding:22px 18px}
+  .cta{width:100%; justify-content:center}
+}</style> </head> <body> <header class="topbar"> <div class="container topbar-inner"> <div class="brand">Eloquent <span>言值</span></div> <nav class="nav" aria-label="Main menu"> <div class="item">Home</div> <div class="item">Why</div> <div class="item">Programme</div> <div class="item">About</div> <div class="item">Register</div> <div class="tag">Executive Education</div> </nav> </div> </header> <main> <section class="hero"> <div class="container hero-inner"> <div> <div class="eyebrow">Eloquent 言值</div> <h1>Preparing Future Leaders in Banking and Business</h1> <p class="subhead"> Drawing on nearly 30 years of capital markets experience at leading global financial institutions including J.P. Morgan, UBS and Credit Suisse. </p>      <div class="cta-strip">
+        <div class="cta">Pilot Programme Now Open</div>
       </div>
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#intro">Introduction</a>
-        <a href="#lookfor">What Banks Look For</a>
-        <a href="#why">Why This Programme</a>
-        <a href="#structure">Programme Structure</a>
-        <a href="#about">About Selina Sia</a>
-        <a href="#register">Register Interest</a>
-      </nav>
-    </header>
 
-    <main>
-      <section class="section" id="intro">
-        <h2 class="heading">1. Introduction</h2>
-        <div class="intro-grid">
-          <div class="copy">
-            <p>Eloquent 言值 is a focused learning experience for students and early-career professionals who want to understand how banking and business leaders assess potential.</p>
-            <p>It brings together insight from the financial sector and practical professional guidance, helping participants prepare for a competitive and demanding workplace.</p>
-          </div>
-          <div class="callout">What Banks Really Look For in New Joiners</div>
+      <div class="meta">
+        <div class="meta-box">
+          <span class="num">4</span>
+          <span class="label">Sessions</span>
         </div>
-        <div class="facts">
-          <div class="fact"><span class="fact-label">Focus</span><span class="fact-value">Banking &amp; Business</span></div>
-          <div class="fact"><span class="fact-label">Audience</span><span class="fact-value">Students &amp; Graduates</span></div>
-          <div class="fact"><span class="fact-label">Founder</span><span class="fact-value">Selina Sia</span></div>
+        <div class="meta-box">
+          <span class="num">2h</span>
+          <span class="label">Each</span>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section class="section" id="lookfor">
-        <h2 class="heading">2. What Banks Really Look For in New Joiners</h2>
-        <div class="grid-2">
-          <article class="card"><h3>Commercial Awareness</h3><p>Understanding how businesses, markets, and clients behave in real-world environments.</p></article>
-          <article class="card"><h3>Structured Thinking</h3><p>Turning complexity into clear reasoning and decision-making under pressure.</p></article>
-          <article class="card"><h3>Professional Presence</h3><p>Demonstrating composure, maturity, and confidence in demanding situations.</p></article>
-          <article class="card"><h3>Learning Agility</h3><p>Showing a willingness to grow, absorb feedback, and adapt quickly.</p></article>
+    <aside class="hero-panel" aria-label="Programme focus">
+      <div>
+        <p class="panel-title">What Banks Really Look For in New Joiners</p>
+        <div class="panel-card">
+          <strong>A practical introduction to how banks identify, assess and develop junior talent.</strong>
+          <ul>
+            <li>Professional judgement</li>
+            <li>Communication effectiveness</li>
+            <li>Learning agility</li>
+            <li>Credibility and teamwork</li>
+            <li>Commercial awareness</li>
+            <li>Self-awareness</li>
+          </ul>
         </div>
-      </section>
+      </div>
+    </aside>
+  </div>
+</section>
 
-      <section class="section" id="why">
-        <h2 class="heading">3. Why This Programme</h2>
-        <div class="grid-2">
-          <article class="card"><h3>Industry Insight</h3><p>Participants gain practical understanding of what leading employers value in future candidates.</p></article>
-          <article class="card"><h3>Career Readiness</h3><p>Designed to improve confidence in interviews, internships, and early-career transitions.</p></article>
-          <article class="card"><h3>Professional Practice</h3><p>Brings together strategic thinking, communication, and leadership behaviours in a clear framework.</p></article>
-          <article class="card"><h3>Long-Term Edge</h3><p>Builds a stronger foundation for both banking and broader business leadership paths.</p></article>
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="kicker">Why this programme</p>
+        <h2>Built for the realities of recruitment and development</h2>
+      </div>
+    </div>
+
+    <div class="why-wrap">
+      <div class="why-copy">
+        <p>Many students devote considerable effort to academic achievement and technical knowledge.</p>
+        <p>Banks also evaluate professional judgement, communication effectiveness, learning agility, credibility, teamwork, commercial awareness and self-awareness.</p>
+        <div class="why-list">
+          <div class="chip">Professional judgement</div>
+          <div class="chip">Commercial awareness</div>
+          <div class="chip">Communication effectiveness</div>
+          <div class="chip">Learning agility</div>
         </div>
-      </section>
+      </div>
 
-      <section class="section" id="structure">
-        <h2 class="heading">4. Programme Structure</h2>
-        <div class="program-grid">
-          <article class="module"><span class="module-tag">Module 01</span><h3>Professional Mindset</h3><p>How to think and behave with the maturity expected in high-performance environments.</p></article>
-          <article class="module"><span class="module-tag">Module 02</span><h3>What Banks Value</h3><p>Understanding the competencies and behaviours employers assess in new joiners.</p></article>
-          <article class="module"><span class="module-tag">Module 03</span><h3>Communication &amp; Influence</h3><p>Developing the clarity and confidence to express ideas in professional settings.</p></article>
-          <article class="module"><span class="module-tag">Module 04</span><h3>Career Positioning</h3><p>Turning potential into a coherent story for internships and graduate opportunities.</p></article>
+      <div class="insight">
+        <div class="insight-box">
+          <span class="insight-label">Focus</span>
+          <p class="insight-copy">Helping students understand how banks identify strengths, interpret potential, and develop future leaders.</p>
         </div>
-      </section>
+        <div class="insight-box">
+          <span class="insight-label">Outcome</span>
+          <p class="insight-copy">Practical, grounded guidance for students preparing to stand out in a competitive environment.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-      <section class="section" id="about">
-        <h2 class="heading">5. About Selina Sia</h2>
-        <div class="about-copy">
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <p class="kicker">Programme structure</p>
+        <h2>Four focused learning sessions</h2>
+      </div>
+    </div>
+
+    <div class="cards">
+      <article class="session-card">
+        <span class="session-number">Session 1</span>
+        <h3>Beyond Grades</h3>
+        <p>Understanding what distinguishes strong candidates beyond academic performance and technical credentials.</p>
+      </article>
+
+      <article class="session-card">
+        <span class="session-number">Session 2</span>
+        <h3>Why Students Get Overlooked</h3>
+        <p>Identifying common patterns that limit early-career candidates, even when they are capable and diligent.</p>
+      </article>
+
+      <article class="session-card">
+        <span class="session-number">Session 3</span>
+        <h3>Top Performers</h3>
+        <p>Exploring the habits, judgement and behaviours that consistently support long-term success in banking and business.</p>
+      </article>
+
+      <article class="session-card">
+        <span class="session-number">Session 4</span>
+        <h3>Development Roadmap</h3>
+        <p>Turning insight into action through a clear framework for growth, progression and leadership development.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <div class="about-shell">
+      <div class="section-header" style="margin-bottom:16px;">
+        <div>
+          <p class="kicker">About Selina</p>
+          <h2>Leadership perspective shaped by decades in capital markets</h2>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="bio">
           <p>Selina has nearly 30 years of capital markets experience across investment banking, private banking, securities advisory and equity research.</p>
           <p>Former Executive Officer, Securities Advisory and former Head of Greater China Equity Research.</p>
           <p>Native speaker of Mandarin and Cantonese, fluent in English.</p>
           <p>Nearly 30 years of capital markets experience, including recruiting, developing and retaining talent across leading global financial institutions.</p>
-          <p class="about-highlight">Through leadership and management roles spanning multiple market cycles, Selina has developed a unique perspective on the qualities that distinguish future leaders in banking and business.</p>
+          <p>Through leadership and management roles spanning multiple market cycles, Selina has developed a unique perspective on the qualities that distinguish future leaders in banking and business.</p>
         </div>
-      </section>
 
-      <section class="section" id="register">
-        <h2 class="heading">6. Register Interest</h2>
-        <div class="register-grid">
-          <div class="register-note"><p>For students and early-career professionals seeking a clearer understanding of how leading banks assess capability, potential, and leadership readiness.</p></div>
-          <form>
-            <div class="form-row"><input type="text" placeholder="Full Name" aria-label="Full Name" /><input type="email" placeholder="Email Address" aria-label="Email Address" /></div>
-            <div class="form-row"><input type="text" placeholder="University / Organisation" aria-label="University / Organisation" /><input type="text" placeholder="Career Stage" aria-label="Career Stage" /></div>
-            <textarea rows="4" placeholder="Tell us about your interest..." aria-label="Tell us about your interest"></textarea>
-            <button type="submit">Register Now</button>
-          </form>
-        </div>
-      </section>
-    </main>
-
-    <footer>Eloquent 言值 · Preparing Future Leaders in Banking and Business</footer>
+        <aside class="credentials">
+          <h3>Professional Perspective</h3>
+          <ul>
+            <li>Nearly three decades in global capital markets</li>
+            <li>Recruitment, development and retention across major institutions</li>
+            <li>Leadership roles across multiple market cycles</li>
+            <li>Fluent in English, Mandarin and Cantonese</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
   </div>
-</body>
-</html>
+</section>
+
+<section class="register">
+  <div class="container">
+    <div class="register-box">
+      <div class="register-copy">
+        <p class="kicker" style="margin-bottom:10px;">Register interest</p>
+        <h2>Secure a place in the pilot programme</h2>
+        <p>For admissions and programme enquiries, contact Selina directly.</p>
+      </div>
+      <div class="email">selina_sia@hotmail.com</div>
+    </div>
+  </div>
+</section></main> <footer> <div class="container footer-inner"> <div class="footer-brand">Eloquent 言值</div> <div>Preparing Future Leaders in Banking and Business</div> </div> </footer> </body> </html>
